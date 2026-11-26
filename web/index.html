@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Headphone (1) Pro | Teardown Study</title>
+  <meta name="description" content="An independent 3D teardown study of the Headphone (1) Pro, modelled in Blender and taken apart in real time with Three.js." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23d71921'/%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Headphone (1) Pro | Teardown Study" />
+  <meta property="og:description" content="An independent 3D teardown study, modelled in Blender and taken apart in real time with Three.js." />
+  <meta property="og:url" content="https://headphone-teardown-study.vercel.app/" />
+  <meta property="og:image" content="https://headphone-teardown-study.vercel.app/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:image" content="https://headphone-teardown-study.vercel.app/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@600;800&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.175.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.175.0/examples/jsm/",
+        "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.mjs",
+        "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+        "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+        "gsap/SplitText": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/SplitText.js"
+      }
+    }
+  </script>
+</head>
+<body class="booting">
+  <div class="bg" aria-hidden="true"></div>
+  <canvas id="gl" aria-label="3D headphone that takes itself apart as you scroll"></canvas>
+
+  <svg id="lines" aria-hidden="true"></svg>
+  <div id="labels" aria-hidden="true"></div>
+
+  <header class="hud tl">
+    <span class="mark"><b class="jr">JR</b><span class="who"><span>JONATHAN ROCHA</span><span>CREATIVE DEVELOPER</span></span></span>
+    <span class="sub">HEADPHONE (1) PRO / TEARDOWN STUDY</span>
+  </header>
+
+  <nav class="menu" id="menu" aria-label="Chapters">
+   <div class="menu-in">
+    <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="menu-list">
+      <span class="menu-label">MENU</span>
+      <span class="menu-ico" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    </button>
+    <div class="menu-list" id="menu-list" inert>
+      <span class="menu-dot" aria-hidden="true"></span>
+      <ul>
+        <li style="--i:0"><a href="#" data-goto="hero">Overview</a></li>
+        <li style="--i:1"><a href="#" data-goto="form">Controls</a></li>
+        <li style="--i:2"><a href="#" data-goto="glass">Glass &amp; bezel</a></li>
+        <li style="--i:3"><a href="#" data-goto="plate">Graphic plate</a></li>
+        <li style="--i:4"><a href="#" data-goto="board">Electronics</a></li>
+        <li style="--i:5"><a href="#" data-goto="inside">Comfort</a></li>
+        <li style="--i:6"><a href="#" data-goto="close">Specs</a></li>
+      </ul>
+      <button type="button" class="menu-replay" data-goto="hero" style="--i:7">Replay from the top</button>
+    </div>
+   </div>
+  </nav>
+
+  <!-- 1 -->
+  <section class="ch lead" data-ch="hero">
+    <div>
+      <h1 class="dot">HEADPHONE<br />(1) PRO</h1>
+      <p class="side">A teardown study, modelled from scratch in Blender. Scroll and it comes apart, one layer at a time.</p>
+    </div>
+  </section>
+  <!-- 2 -->
+  <section class="ch trail has-labels" data-ch="form">
+    <div>
+      <h2>Every control,<br />where your hand<br />expects it.</h2>
+      <p class="side">A roller, a paddle and a button. Learn them once, then use them blind.</p>
+    </div>
+  </section>
+  <!-- 3 -->
+  <section class="ch lead has-labels" data-ch="glass">
+    <div>
+      <p class="stat dot">9H<small>GLASS HARDNESS</small></p>
+      <h2>It starts<br />with glass.</h2>
+      <p class="side">A 9H window keeps the inside on show, and lifts away first.</p>
+    </div>
+  </section>
+  <!-- 4 -->
+  <section class="ch lead has-labels" data-ch="rim">
+    <div>
+      <h2>A frame cut<br />from metal.</h2>
+      <p class="side">The aluminium bezel holds the glass and the arm in a single line.</p>
+    </div>
+  </section>
+  <!-- 5 -->
+  <section class="ch trail has-labels" data-ch="plate">
+    <div>
+      <h2>The layer you<br />are meant to see.</h2>
+      <p class="side">Graphics printed on the inner plate, sitting right behind the glass.</p>
+    </div>
+  </section>
+  <!-- 6 -->
+  <section class="ch lead has-labels" data-ch="board">
+    <div>
+      <h2>Quiet work.</h2>
+      <p class="side">One board for Bluetooth, noise cancelling and power.</p>
+    </div>
+  </section>
+  <!-- 7 -->
+  <section class="ch lead has-labels" data-ch="driver">
+    <div>
+      <p class="stat dot"><span data-count="40">40</span><small>MM DYNAMIC DRIVER</small></p>
+      <h2>The part<br />that makes<br />the sound.</h2>
+      <p class="side">A dynamic driver with a PET dome, at the centre of everything.</p>
+    </div>
+  </section>
+  <!-- 8 -->
+  <section class="ch lead has-labels" data-ch="battery">
+    <div>
+      <p class="stat dot"><span data-count="1060">1060</span><small>MAH BATTERY</small></p>
+      <h2>Tucked<br />under the driver.</h2>
+      <p class="side">A 1060 mAh lithium-ion cell, shaped to fit the cup.</p>
+    </div>
+  </section>
+  <!-- 9 -->
+  <section class="ch trail has-labels" data-ch="inside">
+    <div>
+      <h2>Now from<br />the other side.</h2>
+      <p class="side">A baffle, a chassis and an aluminium tray close the acoustic chamber.</p>
+    </div>
+  </section>
+  <!-- 10 -->
+  <section class="ch lead has-labels" data-ch="comfort">
+    <div>
+      <h2>Soft where<br />it touches you.</h2>
+      <p class="side">A foam core wrapped in synthetic leather.</p>
+    </div>
+  </section>
+  <!-- 11 -->
+  <section class="ch top-center" data-ch="lineup">
+    <div>
+      <h2>Eleven layers. One sound.</h2>
+    </div>
+  </section>
+  <!-- 12 -->
+  <section class="ch lead" data-ch="close">
+    <div>
+      <h2>End of<br />teardown.</h2>
+      <p class="side">Eleven layers, back in one piece.</p>
+      <dl class="specs">
+        <div><dt>Dimensions</dt><dd>190.2 × 174.4 × 78 mm</dd></div>
+        <div><dt>Weight</dt><dd>327 g</dd></div>
+        <div><dt>Bass driver</dt><dd>40 mm dynamic</dd></div>
+        <div><dt>Battery</dt><dd>1060 mAh</dd></div>
+      </dl>
+      <div class="end-actions">
+        <button type="button" id="replay">Replay</button>
+        <a class="bracket" href="/case/"><span>[</span><b>READ THE CASE</b><span>]</span></a>
+        <span>3D study by Jonathan Rocha. Modelled in Blender, rendered with Three.js.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="loader" id="loader" role="progressbar" aria-label="Loading the 3D study" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <canvas class="ld-grid" id="loadgrid" aria-hidden="true"></canvas>
+    <p class="ld-say" id="loadsay" aria-live="polite" aria-atomic="true">LOADING THE MODEL</p>
+    <div class="ld-card" aria-hidden="true"><span class="ld-num" id="loadpct" data-value="0"></span><i></i><span>Loading</span></div>
+    <span class="ld-bar" aria-hidden="true"><i id="loadbar"></i></span>
+  </div>
+
+  <div class="hud bl" aria-hidden="true">
+    <span class="now" id="now">OVERVIEW</span>
+    <span class="progress"><i id="fill"></i></span>
+  </div>
+  <a class="hud br bracket" href="#" id="jump"><span>[</span><b id="jump-label">SPECS</b><span>]</span></a>
+  <p class="legal">Independent design study. Not affiliated with or endorsed by Nothing Technology Ltd. Product names and trademarks belong to their owners.</p>
+
+  <main class="track" aria-hidden="true"></main>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

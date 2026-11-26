@@ -1,0 +1,7 @@
+models/headphone.glb
+.impeccable
+.env.local
+.env*
+.gitignore
+case/media/process/27_premium_desktop.jpg
+case/media/process/28_premium_mobile.jpg

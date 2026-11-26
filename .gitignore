@@ -1,0 +1,34 @@
+# sistema e segredos
+.DS_Store
+.env*
+.claude/
+.impeccable/
+
+# backups automáticos do Blender (as versões vNNN ficam)
+*.blend1
+
+# dependências
+node_modules/
+
+# saídas pesadas e reproduzíveis (quadros, vídeos finais, prints de auditoria e revisão)
+case/renders/
+case/out/
+previews/audit/
+review/
+
+# fotos oficiais de terceiros e comparações feitas com elas
+refs/
+fit/
+
+# modelo sem compressão (o site usa headphone.draco.glb) e prints antigos fora do deploy
+web/models/headphone.glb
+web/case/media/process/27_premium_desktop.jpg
+web/case/media/process/28_premium_mobile.jpg
+
+# git do template do Remotion, guardado ao lado
+case/remotion/.git-remotion-template/
+
+# previews comparados com fotos oficiais e os prints antigos com marca de terceiros
+previews/*foto*
+previews/27_premium_*
+previews/28_premium_*
